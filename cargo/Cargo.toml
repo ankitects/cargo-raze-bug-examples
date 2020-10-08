@@ -5,7 +5,7 @@ edition = "2018"
 
 [raze]
 workspace_path = "//cargo"
-target = "x86_64-apple-darwin"
+#target = "x86_64-apple-darwin"
 #targets = [
 #    "aarch64-unknown-linux-gnu",
 #    "i686-apple-darwin",
@@ -24,7 +24,7 @@ path = "src/lib.rs"
 
 [dependencies]
 zip = { version = "0.5.8", default-features = false, features = ["deflate", "time"] }
-reqwest = { version = "0.10", features = ["json", "socks", "stream", "native-tls-vendored"] }
+#reqwest = { version = "0.10", features = ["json", "socks", "stream", "native-tls-vendored"] }
 
 [raze.crates.proc-macro2.'1.0.24']
 gen_buildrs = true

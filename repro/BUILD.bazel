@@ -7,7 +7,7 @@ rust_binary(
     name = "repro_bin",
     srcs = ["repro.rs"],
     deps = [
-        "//cargo:reqwest",
+#        "//cargo:reqwest",
         "//cargo:zip",
     ],
 )
