@@ -1,0 +1,13 @@
+package(default_visibility = ["//visibility:public"])
+
+load("@io_bazel_rules_rust//rust:rust.bzl", "rust_binary")
+load("@io_bazel_rules_rust//cargo:cargo_build_script.bzl", "cargo_build_script")
+
+rust_binary(
+    name = "repro_bin",
+    srcs = ["repro.rs"],
+    deps = [
+        "//cargo:reqwest",
+        "//cargo:zip",
+    ],
+)

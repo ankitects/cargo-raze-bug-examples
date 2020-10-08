@@ -1,0 +1,79 @@
+[package]
+name = "repro"
+version = "1.0.0"
+edition = "2018"
+
+[raze]
+workspace_path = "//cargo"
+target = "x86_64-apple-darwin"
+#targets = [
+#    "aarch64-unknown-linux-gnu",
+#    "i686-apple-darwin",
+#    "i686-pc-windows-gnu",
+#    "i686-unknown-linux-gnu",
+#    "powerpc-unknown-linux-gnu",
+#    "x86_64-apple-darwin",
+#    "x86_64-pc-windows-gnu",
+#    "x86_64-unknown-linux-gnu",
+#]
+genmode = "Remote"
+
+[lib]
+name = "dummy"
+path = "src/lib.rs"
+
+[dependencies]
+zip = { version = "0.5.8", default-features = false, features = ["deflate", "time"] }
+reqwest = { version = "0.10", features = ["json", "socks", "stream", "native-tls-vendored"] }
+
+[raze.crates.proc-macro2.'1.0.24']
+gen_buildrs = true
+
+[raze.crates.proc-macro-nested.'0.1.6']
+gen_buildrs = true
+
+[raze.crates.typenum.'1.12.0']
+gen_buildrs = true
+additional_flags = [
+    "--cfg=feature=\\\"force_unix_path_separator\\\"",
+]
+
+[raze.crates.lexical-core.'0.7.4']
+additional_flags = [
+    "--cfg=has_range_bounds",
+    "--cfg=has_slice_index",
+    "--cfg=has_full_range_inclusive",
+    "--cfg=has_const_index",
+    "--cfg=has_i128",
+    "--cfg=has_ops_bound",
+    "--cfg=has_pointer_methods",
+    "--cfg=has_range_inclusive",
+    "--cfg=limb_width_64",
+]
+
+[raze.crates.slog-stdlog.'4.0.0']
+gen_buildrs = true
+
+[raze.crates.blake3.'0.3.7']
+gen_buildrs = true
+
+[raze.crates.log.'0.4.11']
+gen_buildrs = true
+
+[raze.crates.indexmap.'1.6.0']
+gen_buildrs = true
+
+[raze.crates.h2.'0.2.6']
+gen_buildrs = true
+
+[raze.crates.mime_guess.'2.0.3']
+gen_buildrs = true
+
+[raze.crates.unicase.'2.6.0']
+# modern Rust, enable flags from build.rs
+additional_flags = [
+        "--cfg=__unicase__iter_cmp",
+        "--cfg=__unicase__default_hasher",
+        "--cfg=__unicase__const_fns",
+        "--cfg=__unicase__core_and_alloc"
+]
